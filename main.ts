@@ -1,4 +1,4 @@
-// World news broadsheet entry for Tuesday 24 November 2026 V3 (Node 22 stdlib only).
+// World news broadsheet entry for Tuesday 24 November 2026 V4 (Node 22 stdlib only).
 import { copyFileSync, mkdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 

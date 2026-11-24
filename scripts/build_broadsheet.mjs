@@ -1,4 +1,4 @@
-// Generates a self-contained 1024x1024 editorial world news broadsheet HTML for Tue 24 Nov 2026 (V3).
+// Generates a self-contained 1024x1024 editorial world news broadsheet HTML for Tue 24 Nov 2026 (V4).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
@@ -8,9 +8,9 @@ const worldAtlasPath = require.resolve('world-atlas/countries-110m.json');
 const worldData = JSON.parse(readFileSync(worldAtlasPath, 'utf8'));
 const countries = topojson.feature(worldData, worldData.objects.countries);
 
-// Natural Earth 110m vector projection inside the bottom-left atlas panel (468 x 268)
+// Natural Earth 110m vector projection inside the bottom-left atlas panel (468 x 280)
 const MAP_W = 468;
-const MAP_H = 268;
+const MAP_H = 280;
 const LON_MIN = -170;
 const LON_MAX = 180;
 const LAT_MIN = -54;
@@ -75,7 +75,7 @@ const heroStories = [
     lat: 26.6,
     art: './assets/hero1_hormuz.jpg',
     headline: 'Hormuz naval mines hit tankers; Iran sets talk terms',
-    summary: 'IRGC says tankers ablaze off Hormuz amid US blockade; Qalibaf refuses talks until sanctions lift. (Al Jazeera, WaPo)',
+    summary: 'IRGC says tankers ablaze off Hormuz amid US blockade; Qalibaf demands sanctions lift for talks. (Al Jazeera, WaPo)',
   },
   {
     id: 2,
@@ -86,18 +86,18 @@ const heroStories = [
     lat: 47.8,
     art: './assets/hero2_ukraine.jpg',
     headline: 'Zelensky urges 4-way talks as Zaporizhzhia struck',
-    summary: 'Overnight Russian barrage kills 2 & wounds 40+; Kyiv rejects Libya warning over Merkury corvette hit. (WaPo, France24)',
+    summary: 'Overnight Russian barrage kills 2 & wounds 40+; Kyiv rejects Libya blame over Merkury corvette hit. (WaPo, Reuters)',
   },
   {
     id: 3,
-    location: 'US & TECH · MARKETS',
-    tag: 'NVDA +31.5%',
+    location: 'GLOBAL TECH · MARKETS',
+    tag: 'TAIEX +9% · BIS',
     color: '#0F766E',
     lon: -122.0,
     lat: 37.4,
     art: './assets/hero3_nvidia.jpg',
-    headline: 'Huang returns as Nvidia adds $952B; Megaspeed hit',
-    summary: 'Nvidia surges 31.5% on CEO reinstatement after Trump nod; US blacklists Singapore’s Megaspeed. (Guardian, AJ)',
+    headline: 'Asia chips soar on Huang return; Megaspeed banned',
+    summary: 'Taiex +9% & Kospi +7% after Nvidia reinstates CEO; US Commerce blacklists Singapore’s Megaspeed. (CNBC, Guardian)',
   },
 ];
 
@@ -110,32 +110,32 @@ const midStories = [
     color: '#047857',
     lon: 101.5,
     lat: 3.2,
-    headline: 'Singapore lifts 2026 GDP to ~6%; probes chips',
-    summary: 'Q3 grows 6.1% on AI surge; PM Wong vows zero tolerance for US chip-ban evasion. (CNA, Edge)',
+    headline: 'Singapore lifts 2026 GDP to ~6% on AI boom',
+    summary: 'Q3 grows 6.1% YoY; PM Wong vows zero tolerance for US chip-ban evasion. (CNA, Edge)',
     badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#DC2626"/><rect x="4" y="11" width="22" height="7" fill="#FFFFFF"/><circle cx="10" cy="7.5" r="2.5" fill="#FFFFFF"/>`,
   },
   {
     id: 5,
-    banner: 'HYBRID EV CAPS',
+    banner: 'HYBRID EV QUOTAS',
     location: 'BRUSSELS · EUROPE',
-    tag: 'EU TRADE',
+    tag: 'DEC 1 CAPS',
     color: '#6D28D9',
     lon: 4.35,
     lat: 50.85,
-    headline: 'EU sets tariff-free quotas on hybrid EVs',
-    summary: 'Dec 1 caps hit China, Japan, Korea & UK hybrids; EU-UK summit backs Kyiv. (Guardian, EU)',
+    headline: 'EU sets Dec 1 tariff-free quotas on hybrid EVs',
+    summary: 'Caps hit China, Japan, Korea & UK hybrids; EU-UK summit backs Kyiv. (Guardian, EU)',
     badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#1D4ED8"/><circle cx="15" cy="11" r="4.5" fill="none" stroke="#FACC15" stroke-width="1.6" stroke-dasharray="2,1.6"/>`,
   },
   {
     id: 6,
-    banner: 'FACTORY FIRE TOLL',
+    banner: '26 FACTORY DEAD',
     location: 'BANTEN · INDONESIA',
-    tag: '24+ DEAD',
+    tag: 'TOLL RISES',
     color: '#991B1B',
     lon: 109.5,
     lat: -8.5,
-    headline: 'Indonesia factory fire kills 24+; ex-chief charged',
-    summary: 'Blocked exits trap candy workers west of Jakarta; ex-police head faces treason charge. (NYT, JT)',
+    headline: 'Indonesia factory fire toll hits 26; probe deepens',
+    summary: 'Blocked exits trapped candy workers west of Jakarta; ex-police chief charged. (WaPo, Guardian)',
     badge: `<rect x="4" y="4" width="22" height="7" fill="#DC2626"/><rect x="4" y="11" width="22" height="7" fill="#FFFFFF"/>`,
   },
   {
@@ -146,8 +146,8 @@ const midStories = [
     color: '#0369A1',
     lon: 149.1,
     lat: -35.3,
-    headline: 'Solomons pivot to Australia pact over China',
-    summary: 'PM Wale visits Canberra for treaty; probe exposes Iran ChatGPT disinfo op. (AA, ABC AU)',
+    headline: 'Solomons pivot to Australia pact, drop China deal',
+    summary: 'PM Wale advances Canberra treaty; probe exposes Iran ChatGPT disinfo op. (AA, ABC AU)',
     badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#0369A1"/><polygon points="15,6 16.5,10 20.5,10 17.3,12.3 18.5,16 15,13.7 11.5,16 12.7,12.3 9.5,10 13.5,10" fill="#FFFFFF"/>`,
   },
 ];
@@ -155,43 +155,51 @@ const midStories = [
 const cornerStories = [
   {
     id: 8,
+    banner: 'CURFEW & AI PLAN',
     location: 'AFRICA · NIGERIA & SA',
-    tag: 'CURFEW & AI',
+    tag: 'SECURITY',
     color: '#B45309',
     lon: 6.0,
     lat: 5.5,
-    headline: 'Delta sets curfew after rally attack; SA AI plan',
-    summary: 'Ughelli shooting forces dusk-to-dawn curfew as Dangote IPO plan clears; Ramaphosa sets 90-day AI roadmap. (Punch, iAfrica)',
+    headline: 'Delta curfew on rally attack; SA sets AI plan',
+    summary: 'Ughelli shooting forces curfew as Dangote IPO clears; SA sets 90-day AI plan. (Punch, iAfrica)',
+    badge: `<rect x="4" y="4" width="7.3" height="14" fill="#15803D"/><rect x="11.3" y="4" width="7.4" height="14" fill="#FFFFFF"/><rect x="18.7" y="4" width="7.3" height="14" fill="#15803D"/>`,
   },
   {
     id: 9,
+    banner: 'DEFENSE & FAA',
     location: 'AMERICAS · VENEZUELA',
-    tag: 'DEFENSE & FAA',
+    tag: 'ACCORD',
     color: '#3730A3',
     lon: -73.0,
     lat: 12.0,
-    headline: 'US & Venezuela ink defense pact; Mexico talks',
-    summary: 'Hegseth & Rodríguez sign military & oil accord; FAA probes Amazon drone hit; Ebrard visits Beijing. (AP, CNBC)',
+    headline: 'US-Venezuela ink pact; FAA probes drone',
+    summary: 'Hegseth & Rodríguez sign military & oil accord; FAA investigates Amazon drone hit. (AP, CNBC)',
+    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#1E3A8A"/><polygon points="15,6.5 16.3,10 20,10 17,12.2 18.1,15.5 15,13.5 11.9,15.5 13,12.2 10,10 13.7,10" fill="#FACC15"/>`,
   },
   {
     id: 10,
-    location: 'LATAM & ORBIT · SPACE',
-    tag: 'VA271 · ISS',
+    banner: 'VA271 LAUNCHED',
+    location: 'SPACE · KOUROU & ISS',
+    tag: '36 SATS UP',
     color: '#1E40AF',
     lon: -50.0,
     lat: 2.0,
-    headline: 'Ariane 6 sets Tue launch; Progress 97 docks',
-    summary: 'Kourou flight carries 36 Amazon Leo satellites; Baikonur sends 3 tons of cargo to the ISS. (Arianespace, NASA)',
+    headline: 'Ariane 6 lofts 36 Amazon Leo sats; ISS docks',
+    summary: 'VA271 lifts off at 11:14 UTC from Kourou; Progress 97 docks 3 tons at ISS. (SFN, NASA)',
+    badge: `<polygon points="15,3.5 19,11 17,11 17,17.5 13,17.5 13,11 11,11" fill="#FFFFFF"/><polygon points="11,14 13,12.5 13,16.5" fill="#FACC15"/><polygon points="19,14 17,12.5 17,16.5" fill="#FACC15"/>`,
   },
   {
     id: 11,
-    location: 'SCIENCE · CLIMATE',
-    tag: 'MOON & COP31',
-    color: '#4338CA',
-    lon: 115.8,
-    lat: -31.9,
-    headline: 'Far-side Moon rocks rewrite impacts; COP31 stalls',
-    summary: 'Curtin study overturns sudden-cataclysm model; UN climate summit ends overtime without major deal. (ScienceDaily, Reuters)',
+    banner: 'DHAKA & COP31',
+    location: 'SOUTH ASIA · CLIMATE',
+    tag: 'RETURN VOW',
+    color: '#0F766E',
+    lon: 90.4,
+    lat: 23.8,
+    headline: 'Hasina vows Dec 16 return; COP31 stalls',
+    summary: 'Dhaka threatens arrest of exiled ex-PM; Antalya UN climate talks deadlock. (AJ, Reuters)',
+    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#006A4E"/><circle cx="14" cy="11" r="4.2" fill="#F42A41"/>`,
   },
 ];
 
@@ -200,8 +208,8 @@ const pinsSvg = allPins
   .map((p) => {
     const [x, y] = project(p.lon, p.lat);
     return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)})">
-      <circle r="9.4" fill="${p.color}" stroke="#FFFFFF" stroke-width="2"/>
-      <text y="3.4" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="900" fill="#FFFFFF">${p.id}</text>
+      <circle r="10.2" fill="${p.color}" stroke="#FFFFFF" stroke-width="2.2"/>
+      <text y="3.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#FFFFFF">${p.id}</text>
     </g>`;
   })
   .join('\n');
@@ -239,13 +247,19 @@ function renderMidCard(s) {
 
 function renderCornerCard(s) {
   return `<div class="corner-card">
-    <div class="corner-meta">
-      <span class="badge-sm" style="background:${s.color};">${s.id}</span>
-      <span class="corner-loc" style="color:${s.color};">${s.location}</span>
-      <span class="corner-tag">${s.tag}</span>
+    <div class="corner-banner" style="background:${s.color};">
+      <svg viewBox="0 0 30 22" width="24" height="17">${s.badge}</svg>
+      <span>${s.banner}</span>
     </div>
-    <div class="corner-hed">${s.headline}</div>
-    <div class="corner-sum">${s.summary}</div>
+    <div class="corner-body">
+      <div class="corner-meta">
+        <span class="badge-sm" style="background:${s.color};">${s.id}</span>
+        <span class="corner-loc" style="color:${s.color};">${s.location}</span>
+        <span class="corner-tag">${s.tag}</span>
+      </div>
+      <div class="corner-hed">${s.headline}</div>
+      <div class="corner-sum">${s.summary}</div>
+    </div>
   </div>`;
 }
 
@@ -291,49 +305,33 @@ const html = `<!doctype html>
   .title-line {
     text-align: center;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 40px;
+    font-size: 43px;
     font-weight: 900;
     letter-spacing: 0.02em;
-    line-height: 1.04;
+    line-height: 1.03;
     color: #0B1220;
     margin: 2px 0 3px 0;
   }
   .sub-deck {
     text-align: center;
-    font-size: 12px;
+    font-size: 12.2px;
     font-weight: 900;
     letter-spacing: 0.03em;
     color: #7F1D1D;
     text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-  .region-bar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    height: 16px;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .rb-seg {
-    font-size: 9.5px;
-    font-weight: 900;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    letter-spacing: 0.04em;
+    margin-bottom: 1px;
   }
 
   .hero-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 9px;
-    height: 318px;
+    height: 326px;
     flex-shrink: 0;
   }
   .hero-card {
     background: #FFFDF8;
-    border: 1.6px solid #94A3B8;
+    border: 1.8px solid #64748B;
     border-radius: 6px;
     padding: 8px 9px;
     display: flex;
@@ -346,11 +344,11 @@ const html = `<!doctype html>
     gap: 6px;
   }
   .badge {
-    width: 21px;
-    height: 21px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 900;
     display: inline-flex;
     align-items: center;
@@ -374,7 +372,7 @@ const html = `<!doctype html>
   }
   .hero-art {
     width: 100%;
-    height: 162px;
+    height: 168px;
     border-radius: 4px;
     overflow: hidden;
     border: 1px solid #CBD5E1;
@@ -389,41 +387,41 @@ const html = `<!doctype html>
   }
   .hero-hed {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 900;
     line-height: 1.12;
-    color: #0F172A;
+    color: #0B1220;
   }
   .hero-sum {
-    font-size: 12.6px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 1.24;
-    color: #1F2937;
+    color: #1E293B;
   }
 
   .mid-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 9px;
-    height: 196px;
+    height: 186px;
     flex-shrink: 0;
   }
   .mid-card {
     background: #FFFDF8;
-    border: 1.6px solid #94A3B8;
+    border: 1.8px solid #64748B;
     border-radius: 6px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
   .mid-banner {
-    height: 27px;
+    height: 28px;
     padding: 0 8px;
     display: flex;
     align-items: center;
     gap: 6px;
     color: #FFFFFF;
-    font-size: 10.5px;
+    font-size: 10.8px;
     font-weight: 900;
     letter-spacing: 0.05em;
     flex-shrink: 0;
@@ -466,16 +464,16 @@ const html = `<!doctype html>
   }
   .mid-hed {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 17px;
+    font-size: 17.6px;
     font-weight: 900;
-    line-height: 1.14;
-    color: #0F172A;
+    line-height: 1.13;
+    color: #0B1220;
   }
   .mid-sum {
-    font-size: 12.8px;
+    font-size: 13px;
     font-weight: 600;
-    line-height: 1.26;
-    color: #1F2937;
+    line-height: 1.24;
+    color: #1E293B;
   }
 
   .bottom-row {
@@ -487,7 +485,7 @@ const html = `<!doctype html>
   }
   .atlas-panel {
     background: #FFFDF8;
-    border: 1.6px solid #94A3B8;
+    border: 1.8px solid #64748B;
     border-radius: 6px;
     padding: 7px 8px;
     display: flex;
@@ -497,7 +495,7 @@ const html = `<!doctype html>
   .panel-head {
     display: flex;
     justify-content: space-between;
-    font-size: 10.5px;
+    font-size: 10.8px;
     font-weight: 900;
     letter-spacing: 0.05em;
     color: #0F172A;
@@ -510,7 +508,7 @@ const html = `<!doctype html>
     border: 1px solid #94A3B8;
     border-radius: 4px;
     overflow: hidden;
-    height: 268px;
+    height: 280px;
     background: #D6E6F2;
   }
   .legend {
@@ -538,12 +536,30 @@ const html = `<!doctype html>
   }
   .corner-card {
     background: #FFFDF8;
-    border: 1.6px solid #94A3B8;
+    border: 1.8px solid #64748B;
     border-radius: 6px;
-    padding: 7px 9px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+  }
+  .corner-banner {
+    height: 25px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #FFFFFF;
+    font-size: 10.2px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .corner-body {
+    padding: 6px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5px;
+    flex: 1;
   }
   .corner-meta {
     display: flex;
@@ -551,14 +567,14 @@ const html = `<!doctype html>
     gap: 5px;
   }
   .corner-loc {
-    font-size: 10px;
+    font-size: 9.8px;
     font-weight: 900;
     letter-spacing: 0.02em;
     flex-grow: 1;
     white-space: nowrap;
   }
   .corner-tag {
-    font-size: 9.5px;
+    font-size: 9.2px;
     font-weight: 900;
     color: #334155;
     background: #E2E8F0;
@@ -568,16 +584,16 @@ const html = `<!doctype html>
   }
   .corner-hed {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 16.4px;
+    font-size: 17px;
     font-weight: 900;
-    line-height: 1.14;
-    color: #0F172A;
+    line-height: 1.13;
+    color: #0B1220;
   }
   .corner-sum {
-    font-size: 12.4px;
+    font-size: 12.6px;
     font-weight: 600;
-    line-height: 1.25;
-    color: #1F2937;
+    line-height: 1.23;
+    color: #1E293B;
   }
 
   .footer {
@@ -599,19 +615,10 @@ const html = `<!doctype html>
     <header class="masthead">
       <div class="top-strip">
         <span>THE WORLD IN ONE DAY</span>
-        <span class="red">TUESDAY 24 NOVEMBER 2026 · ALL 7 REGIONS · 11 LEAD DISPATCHES</span>
+        <span class="red">TUESDAY 24 NOVEMBER 2026 · ALL 7 REGIONS · 11 VERIFIED DISPATCHES</span>
       </div>
       <div class="title-line">TUESDAY · 24 NOVEMBER 2026</div>
-      <div class="sub-deck">HORMUZ TANKER MINES · ZAPORIZHZHIA &amp; 4-WAY TALKS · NVIDIA +31.5% HUANG RETURN · SINGAPORE 6% GDP</div>
-      <div class="region-bar">
-        <div class="rb-seg" style="background:#B91C1C;">MIDEAST</div>
-        <div class="rb-seg" style="background:#1D4ED8;">EUROPE</div>
-        <div class="rb-seg" style="background:#0F766E;">US &amp; TECH</div>
-        <div class="rb-seg" style="background:#047857;">ASIA</div>
-        <div class="rb-seg" style="background:#0369A1;">OCEANIA</div>
-        <div class="rb-seg" style="background:#B45309;">AFRICA</div>
-        <div class="rb-seg" style="background:#4338CA;">LATAM &amp; SCI</div>
-      </div>
+      <div class="sub-deck">HORMUZ TANKER MINES · ZAPORIZHZHIA &amp; 4-WAY TALKS · ASIA CHIPS +9% &amp; MEGASPEED BAN · HASINA DEC 16 RETURN</div>
     </header>
 
     <section class="hero-row">
@@ -639,11 +646,11 @@ const html = `<!doctype html>
         <div class="legend">
           <span><i class="dot" style="background:#B91C1C;"></i>Mideast</span>
           <span><i class="dot" style="background:#1D4ED8;"></i>Europe</span>
-          <span><i class="dot" style="background:#0F766E;"></i>US/Tech</span>
+          <span><i class="dot" style="background:#0F766E;"></i>Tech/S.Asia</span>
           <span><i class="dot" style="background:#047857;"></i>Asia</span>
           <span><i class="dot" style="background:#0369A1;"></i>Oceania</span>
           <span><i class="dot" style="background:#B45309;"></i>Africa</span>
-          <span><i class="dot" style="background:#4338CA;"></i>LatAm/Sci</span>
+          <span><i class="dot" style="background:#3730A3;"></i>Americas</span>
         </div>
       </div>
 
@@ -654,11 +661,11 @@ const html = `<!doctype html>
 
     <footer class="footer">
       <span>TUESDAY 24 NOVEMBER 2026 VERIFIED</span>
-      <span>ALL 7 REGIONS · REUTERS / AP / BBC / WAPO / GUARDIAN / CNA / NASA · NATURAL EARTH ATLAS</span>
+      <span>ALL 7 REGIONS · REUTERS / AP / BBC / WAPO / GUARDIAN / AL JAZEERA / CNA / NASA</span>
     </footer>
   </div>
 </body>
 </html>`;
 
 writeFileSync(new URL('../broadsheet.html', import.meta.url), html, 'utf8');
-console.log('Wrote V3 broadsheet.html (11 lead dispatches, 7 regions, bespoke editorial art)');
+console.log('Wrote V4 broadsheet.html (11 lead dispatches, 7 regions, unified 300px-legible layout)');
