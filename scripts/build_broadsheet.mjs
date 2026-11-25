@@ -1,5 +1,5 @@
-// Generates a self-contained 1024x1024 editorial world news broadsheet HTML for Tue 24 Nov 2026 (V5).
-// Built on V2's 23-dispatch 7-region Natural Earth vector broadsheet architecture with live Tue 24 Nov updates.
+// Generates a self-contained 1024x1024 editorial world news broadsheet HTML for Tue 24 Nov 2026 (V6).
+// Restores V2's 1-focused-story-per-card broadsheet discipline with verified Tue 24 Nov stories and crisp 300px hierarchy.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
@@ -70,94 +70,96 @@ const heroStories = [
   {
     id: 1,
     location: 'HORMUZ · MARITIME',
-    tag: 'MINES & SHIPS',
+    tag: '3 TANKERS',
     color: '#B91C1C',
-    lon: 57.5,
-    lat: 26.2,
-    headline: 'Hormuz naval mines ignite oil tankers',
-    summary: 'IRGC reports tankers ablaze off Hormuz amid US blockade; Iran vows full defense. (Al Jazeera, AA)',
+    headline: 'Hormuz naval mines ignite 3 oil tankers',
+    summary: 'IRGC reports 3 ships ablaze off Hormuz amid US naval standoff; US-Qatar talks held. (Al Jazeera, AA)',
     scene: `<svg viewBox="0 0 300 72" width="100%" height="72">
       <defs>
         <linearGradient id="hormuzSky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#1E1B4B"/>
-          <stop offset="62%" stop-color="#7C2D12"/>
+          <stop offset="60%" stop-color="#7C2D12"/>
           <stop offset="100%" stop-color="#EA580C"/>
         </linearGradient>
       </defs>
       <rect width="300" height="72" rx="4" fill="url(#hormuzSky)"/>
-      <rect y="48" width="300" height="24" fill="#0F172A"/>
-      <path d="M0 54 Q30 50 60 54 T120 54 T180 54 T240 54 T300 54" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity="0.6"/>
-      <g transform="translate(26,38)">
+      <rect y="47" width="300" height="25" fill="#0F172A"/>
+      <path d="M0 53 Q30 49 60 53 T120 53 T180 53 T240 53 T300 53" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity="0.6"/>
+      <g transform="translate(24,37)">
         <polygon points="0,12 64,12 58,18 6,18" fill="#334155"/>
         <rect x="42" y="4" width="12" height="8" fill="#475569"/>
-        <path d="M18 11 C15 2 25 -4 28 5 C31 -2 39 3 34 11 Z" fill="#F97316"/>
-        <circle cx="26" cy="5" r="3" fill="#FACC15"/>
+        <path d="M18 11 C15 1 26 -5 29 5 C32 -2 40 3 34 11 Z" fill="#F97316"/>
+        <circle cx="27" cy="5" r="3" fill="#FACC15"/>
       </g>
-      <g transform="translate(116,35)">
+      <g transform="translate(114,34)">
         <polygon points="0,14 70,14 63,21 6,21" fill="#1E293B"/>
         <rect x="48" y="5" width="12" height="9" fill="#475569"/>
         <path d="M22 13 C17 1 30 -7 34 4 C39 -4 48 4 42 13 Z" fill="#EF4444"/>
         <circle cx="32" cy="7" r="4" fill="#FDE047"/>
       </g>
-      <g transform="translate(212,40)">
+      <g transform="translate(210,39)">
         <polygon points="0,11 58,11 52,17 5,17" fill="#334155"/>
         <rect x="38" y="4" width="11" height="7" fill="#475569"/>
         <path d="M16 10 C13 2 22 -3 25 5 C28 -1 35 3 30 10 Z" fill="#F97316"/>
       </g>
       <circle cx="96" cy="60" r="4.5" fill="#DC2626" stroke="#FCA5A5" stroke-width="1.3"/>
       <circle cx="198" cy="61" r="4.5" fill="#DC2626" stroke="#FCA5A5" stroke-width="1.3"/>
-      <rect x="8" y="6" width="132" height="16" rx="3" fill="rgba(15,23,42,0.86)"/>
-      <text x="14" y="17.5" font-family="Arial, sans-serif" font-size="9.5" font-weight="900" fill="#FED7AA">STRAIT OF HORMUZ FLASH</text>
+      <rect x="8" y="6" width="152" height="17" rx="3" fill="rgba(15,23,42,0.88)"/>
+      <text x="14" y="18" font-family="Arial, sans-serif" font-size="10" font-weight="900" fill="#FED7AA">STRAIT OF HORMUZ FLASH</text>
     </svg>`,
   },
   {
     id: 2,
-    location: 'UKRAINE · WAR & TALKS',
-    tag: '4-WAY PUSH',
+    location: 'UKRAINE · WAR & UNSC',
+    tag: 'ZAPORIZHZHIA',
     color: '#1D4ED8',
-    lon: 34.0,
-    lat: 48.0,
-    headline: 'Zelensky urges 4-way talks; Merkury hit',
-    summary: 'Zaporizhzhia strike wounds 40+; Kyiv hits Russian corvette off Libya. (Reuters, WaPo)',
+    headline: 'Russian strike hits Zaporizhzhia; UNSC clashes',
+    summary: 'Apartment strike kills 2+ and wounds dozens as Kyiv & Moscow clash at UN over energy raids. (Reuters, AA)',
     scene: `<svg viewBox="0 0 300 72" width="100%" height="72">
-      <rect width="300" height="72" rx="4" fill="#0F172A"/>
-      <path d="M0 16 L300 16" stroke="#1E293B" stroke-width="1"/>
-      <path d="M0 36 L300 36" stroke="#1E293B" stroke-width="1"/>
-      <path d="M0 56 L300 56" stroke="#1E293B" stroke-width="1"/>
-      <circle cx="48" cy="36" r="21" fill="#1E3A8A" stroke="#60A5FA" stroke-width="2"/>
-      <text x="48" y="34" text-anchor="middle" font-family="Arial, sans-serif" font-size="10.5" font-weight="900" fill="#FACC15">UA</text>
-      <text x="48" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="800" fill="#DBEAFE">KYIV</text>
-      <line x1="71" y1="36" x2="100" y2="36" stroke="#38BDF8" stroke-width="2.2" stroke-dasharray="3,2"/>
-      <rect x="100" y="13" width="90" height="46" rx="5" fill="#172554" stroke="#93C5FD" stroke-width="1.6"/>
-      <text x="145" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.8" font-weight="900" fill="#93C5FD">4-PARTY SUMMIT</text>
-      <text x="145" y="45" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#FFFFFF">UA·US·EU·RU</text>
-      <rect x="200" y="13" width="92" height="46" rx="5" fill="#450A0A" stroke="#F87171" stroke-width="1.5"/>
-      <text x="246" y="27" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.2" font-weight="900" fill="#FCA5A5">FRONTLINE HITS</text>
-      <text x="246" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.4" font-weight="900" fill="#FFFFFF">ZAPORIZHZHIA</text>
-      <text x="246" y="53" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="800" fill="#FECACA">&amp; MERKURY SHIP</text>
+      <defs>
+        <linearGradient id="uaSky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0F172A"/>
+          <stop offset="100%" stop-color="#1E3A8A"/>
+        </linearGradient>
+      </defs>
+      <rect width="300" height="72" rx="4" fill="url(#uaSky)"/>
+      <rect x="14" y="20" width="24" height="52" fill="#334155"/>
+      <rect x="42" y="14" width="34" height="58" fill="#475569"/>
+      <rect x="47" y="21" width="6" height="6" fill="#FACC15"/>
+      <rect x="57" y="21" width="6" height="6" fill="#1E293B"/>
+      <rect x="47" y="32" width="6" height="6" fill="#1E293B"/>
+      <rect x="57" y="32" width="6" height="6" fill="#FDE047"/>
+      <rect x="47" y="43" width="6" height="6" fill="#F97316"/>
+      <rect x="57" y="43" width="6" height="6" fill="#1E293B"/>
+      <path d="M58 14 C64 4 78 6 82 18 C75 24 63 23 58 14 Z" fill="#EF4444" opacity="0.9"/>
+      <circle cx="67" cy="14" r="4.5" fill="#FDE047"/>
+      <rect x="80" y="30" width="22" height="42" fill="#334155"/>
+      <rect x="116" y="10" width="174" height="52" rx="4" fill="rgba(15,23,42,0.86)" stroke="#60A5FA" stroke-width="1.4"/>
+      <text x="203" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="900" fill="#93C5FD">CIVILIAN &amp; GRID FRONT</text>
+      <text x="203" y="41" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#FFFFFF">ZAPORIZHZHIA HIT</text>
+      <text x="203" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="800" fill="#FACC15">UNSC BLACK SEA CLASH</text>
     </svg>`,
   },
   {
     id: 3,
-    location: 'TAIPEI & SEOUL · TECH',
-    tag: 'TAIEX +9% · BIS',
+    location: 'ASIA & NY · MARKETS',
+    tag: 'CHIP RALLY',
     color: '#0F766E',
-    lon: 121.5,
-    lat: 25.0,
-    headline: 'Asia chips soar on Huang return; Megaspeed hit',
-    summary: 'Taiex +9% & Kospi +7% as Nvidia reinstates CEO; US blacklists Singapore firm. (CNBC, AJ)',
+    headline: 'Asia chips surge on Huang return; NY cools',
+    summary: 'Kospi +6.3% & Nikkei +3.9% rally on Nvidia CEO return; NVDA -6% & Dow +400 pts. (Guardian)',
     scene: `<svg viewBox="0 0 300 72" width="100%" height="72">
       <rect width="300" height="72" rx="4" fill="#062822"/>
-      <line x1="10" y1="56" x2="290" y2="56" stroke="#115E59" stroke-width="1"/>
+      <line x1="10" y1="57" x2="290" y2="57" stroke="#115E59" stroke-width="1"/>
       <line x1="10" y1="36" x2="290" y2="36" stroke="#115E59" stroke-width="1" stroke-dasharray="3,3"/>
       <line x1="10" y1="16" x2="290" y2="16" stroke="#115E59" stroke-width="1" stroke-dasharray="3,3"/>
       <rect x="14" y="16" width="38" height="38" rx="5" fill="#0F766E" stroke="#5EEAD4" stroke-width="1.8"/>
       <rect x="23" y="25" width="20" height="20" rx="2" fill="#CCFBF1"/>
       <text x="33" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" font-weight="900" fill="#0F766E">GPU</text>
-      <polyline points="64,54 102,48 132,50 170,25 204,29 248,11" fill="none" stroke="#34D399" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <polygon points="252,9 240,10 247,20" fill="#34D399"/>
-      <rect x="156" y="38" width="134" height="24" rx="4" fill="#064E3B" stroke="#34D399" stroke-width="1.5"/>
-      <text x="223" y="53.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="900" fill="#ECFDF5">TAIEX +9% · KOSPI +7%</text>
+      <polyline points="62,55 96,49 124,45 156,22 184,13 210,20" fill="none" stroke="#34D399" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <polygon points="187,9 175,11 182,21" fill="#34D399"/>
+      <rect x="150" y="34" width="140" height="30" rx="4" fill="#064E3B" stroke="#34D399" stroke-width="1.5"/>
+      <text x="220" y="47.5" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="900" fill="#ECFDF5">KOSPI +6.3% · NIKKEI +3.9%</text>
+      <text x="220" y="59" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.3" font-weight="800" fill="#A7F3D0">DOW +400 · NASDAQ -1.5%</text>
     </svg>`,
   },
 ];
@@ -165,146 +167,142 @@ const heroStories = [
 const midStories = [
   {
     id: 4,
-    banner: 'GDP UPGRADED ~6%',
-    location: 'SINGAPORE · ECON',
-    tag: '6.1% Q3',
-    color: '#047857',
-    lon: 103.8,
-    lat: 1.35,
-    headline: 'Singapore lifts 2026 GDP view to ~6%',
-    summary: 'Q3 grew 6.1% YoY; PM Wong vows zero tolerance for US chip evasion. (CNA)',
-    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#DC2626"/><rect x="4" y="11" width="22" height="7" fill="#FFFFFF"/><circle cx="10" cy="7.5" r="2.5" fill="#FFFFFF"/>`,
+    banner: 'RIYADH TOWER HIT',
+    location: 'SAUDI · MIDEAST',
+    tag: '11 INJURED',
+    color: '#991B1B',
+    headline: 'Houthi strike hits Riyadh financial tower',
+    summary: 'Strike wounds 11 in Saudi capital business hub; US missions issue security warnings. (CBS, AJ)',
+    badge: `<polygon points="15,3 26,20 4,20" fill="#FACC15"/><rect x="14" y="8" width="2" height="6" fill="#991B1B"/><circle cx="15" cy="17" r="1.2" fill="#991B1B"/>`,
   },
   {
     id: 5,
-    banner: 'ESPIONAGE VERDICT',
-    location: 'BEIJING · CHINA',
-    tag: 'COURT',
-    color: '#991B1B',
-    lon: 116.4,
-    lat: 40.5,
-    headline: 'Chinese official gets death for spying',
-    summary: 'Official surnamed Ma convicted of leaking secrets; $150B clean tech grows. (CNA)',
-    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#DC2626"/><polygon points="9,7 10,10 13,10 10.5,12 11.5,15 9,13 6.5,15 7.5,12 5,10 8,10" fill="#FACC15"/>`,
-  },
-  {
-    id: 6,
-    banner: 'FAA DRONE & CFTC',
-    location: 'MICHIGAN · US',
-    tag: 'TECH/FIN',
-    color: '#3730A3',
-    lon: -84.5,
-    lat: 42.7,
-    headline: 'FAA probes Amazon drone power hit',
-    summary: 'Struck fiber & garage; CFTC allows crypto reserves as BTC hits $60K. (CNBC)',
-    badge: `<circle cx="15" cy="11" r="8" fill="#E0E7FF"/><path d="M9 11 L21 11 M15 5 L15 17" stroke="#3730A3" stroke-width="2.2"/><circle cx="15" cy="11" r="2.5" fill="#DC2626"/>`,
-  },
-  {
-    id: 7,
-    banner: 'HYBRID EV QUOTAS',
-    location: 'BRUSSELS · EU/UK',
-    tag: 'DEC 1 CAPS',
-    color: '#6D28D9',
-    lon: 2.5,
-    lat: 50.5,
-    headline: 'EU sets Dec 1 tariff-free hybrid quotas',
-    summary: 'Caps hit Asian & UK hybrids; UK court airs $1.4M Andrew claim. (Guardian)',
-    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#1D4ED8"/><circle cx="15" cy="11" r="4.5" fill="none" stroke="#FACC15" stroke-width="1.6" stroke-dasharray="2,1.6"/>`,
-  },
-  {
-    id: 8,
-    banner: 'CURFEW & RECOVERY',
-    location: 'NIGERIA · AFRICA',
-    tag: 'SECURITY',
-    color: '#B45309',
-    lon: 8.5,
-    lat: 8.5,
-    headline: 'Delta curfew on attack; Borno rebounds',
-    summary: 'Ughelli shooting forces curfew; Dangote IPO clears; school enrolment doubles. (AJ)',
-    badge: `<rect x="4" y="4" width="7" height="14" fill="#15803D"/><rect x="11" y="4" width="8" height="14" fill="#FFFFFF"/><rect x="19" y="4" width="7" height="14" fill="#15803D"/>`,
-  },
-  {
-    id: 9,
-    banner: 'CANBERRA PACT',
-    location: 'OCEANIA · PACIFIC',
-    tag: 'SECURITY',
-    color: '#0369A1',
-    lon: 149.1,
-    lat: -35.3,
-    headline: 'Solomons pivot to Australia, drop China',
-    summary: 'PM Wale backs Canberra pact; probe exposes Iran ChatGPT disinfo op. (ABC AU)',
-    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#0369A1"/><circle cx="15" cy="11" r="4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>`,
-  },
-  {
-    id: 10,
     banner: 'VA271 LAUNCHED',
     location: 'KOUROU · SPACE',
     tag: '36 SATS UP',
     color: '#1E40AF',
-    lon: -52.7,
-    lat: 5.2,
-    headline: 'Ariane 6 lofts 36 Amazon Leo sats',
-    summary: 'VA271 lifts off at 11:14 UTC; Progress 97 docks 3 tons at ISS. (SFN, NASA)',
+    headline: 'Ariane 6 lofts 36 Amazon Leo satellites',
+    summary: '10th Ariane 6 flight lifts off from French Guiana at 11:14 UTC to rebuild Kuiper fleet. (Space.com)',
     badge: `<polygon points="15,3 20,16 10,16" fill="#FFFFFF"/><rect x="13" y="16" width="4" height="3" fill="#F97316"/>`,
   },
   {
+    id: 6,
+    banner: 'TALKS COLLAPSE',
+    location: 'ANTALYA · CLIMATE',
+    tag: 'COP31',
+    color: '#047857',
+    headline: 'COP31 summit breaks down without deal',
+    summary: 'EU, UK & island allies reject draft lacking fossil-fuel phaseout timeline after overtime. (UN, AA)',
+    badge: `<circle cx="15" cy="11" r="7.5" fill="none" stroke="#FFFFFF" stroke-width="1.8"/><path d="M8 11 L22 11 M15 3.5 A6 7.5 0 0 0 15 18.5 M15 3.5 A6 7.5 0 0 1 15 18.5" fill="none" stroke="#FFFFFF" stroke-width="1.2"/>`,
+  },
+  {
+    id: 7,
+    banner: 'ESPIONAGE VERDICT',
+    location: 'BEIJING · CHINA',
+    tag: 'COURT',
+    color: '#B91C1C',
+    headline: 'Chinese official gets death for spying',
+    summary: 'Official surnamed Ma convicted of selling classified state secrets abroad. (Guardian, CNA)',
+    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#DC2626"/><polygon points="9,7 10,10 13,10 10.5,12 11.5,15 9,13 6.5,15 7.5,12 5,10 8,10" fill="#FACC15"/>`,
+  },
+  {
+    id: 8,
+    banner: 'SECURITY PACT',
+    location: 'OCEANIA · PACIFIC',
+    tag: 'TREATY',
+    color: '#0369A1',
+    headline: 'Solomons pivot to Australia security pact',
+    summary: 'Reports show Honiara ending 2022 China deal for bilateral treaty with Canberra. (Guardian)',
+    badge: `<rect x="4" y="4" width="22" height="14" rx="2" fill="#0369A1"/><circle cx="15" cy="11" r="4" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>`,
+  },
+  {
+    id: 9,
+    banner: '$417M IMF DEAL',
+    location: 'GUINEA · AFRICA',
+    tag: 'ECONOMY',
+    color: '#B45309',
+    headline: 'IMF approves $417M credit facility for Guinea',
+    summary: '38-month ECF/EFF program supports stability ahead of Simandou iron-ore revenues. (IMF)',
+    badge: `<rect x="4" y="4" width="7" height="14" fill="#DC2626"/><rect x="11" y="4" width="8" height="14" fill="#FACC15"/><rect x="19" y="4" width="7" height="14" fill="#15803D"/>`,
+  },
+  {
+    id: 10,
+    banner: 'EVACUATION ZONE',
+    location: 'IOWA · US',
+    tag: 'SAFETY',
+    color: '#3730A3',
+    headline: 'US Army maps Iowa lead azide detonation',
+    summary: 'FEMA and state crews prep Middletown evacuation plans for unstable explosives blast. (AP, Army)',
+    badge: `<circle cx="15" cy="11" r="7.5" fill="#FACC15"/><path d="M15 6 L20 15 L10 15 Z" fill="#1E1B4B"/>`,
+  },
+  {
     id: 11,
-    banner: 'OUTER SOLAR SYSTEM',
-    location: 'SCIENCE · SPACE',
-    tag: 'PLANET 9',
-    color: '#4338CA',
-    lon: 151.2,
-    lat: -33.8,
-    headline: 'New model backs hidden Ninth Planet',
-    summary: 'Fresh orbital simulations published Tuesday point to unseen giant. (ABC AU)',
-    badge: `<circle cx="15" cy="11" r="6" fill="#312E81" stroke="#A5B4FC" stroke-width="1.8"/><ellipse cx="15" cy="11" rx="11" ry="3.5" transform="rotate(-20 15 11)" fill="none" stroke="#E0E7FF" stroke-width="1.2"/>`,
+    banner: 'FACTORY DISASTER',
+    location: 'INDONESIA · ASIA',
+    tag: '26 DEAD',
+    color: '#6D28D9',
+    headline: 'Indonesia candy factory fire kills 26',
+    summary: 'Rescue teams search collapsed Cikande plant near Jakarta as safety probe opens. (AP)',
+    badge: `<rect x="4" y="4" width="22" height="7" fill="#DC2626"/><rect x="4" y="11" width="22" height="7" fill="#FFFFFF"/>`,
   },
 ];
 
 const briefs = [
-  { id: 12, label: 'Japan & Indonesia', text: 'Japan Nov PMI expands & Tokyo tech gains; Indonesia candy fire toll hits 26.', src: 'CNA, WaPo', color: '#0F766E' },
-  { id: 13, label: 'Saudi / Mideast', text: 'Houthi strike hits Riyadh financial tower, hurting 11; Qatari PM meets US officials.', src: 'Al Jazeera', color: '#B91C1C' },
-  { id: 14, label: 'New Zealand / Dairy', text: 'Fonterra seeks permit to dump 22M L raw milk; Māori seat vote debate.', src: 'RNZ', color: '#0369A1' },
-  { id: 15, label: 'Guam / Pacific', text: 'Territory secures $10.3M US grants for power grids, clinics & resilience.', src: 'RNZ', color: '#0369A1' },
-  { id: 16, label: 'US / Law & Labor', text: 'Appeals court opens Trump hush-money path; DOL finalizes contractor rule.', src: 'Hindu, OnLabor', color: '#3730A3' },
-  { id: 17, label: 'US / Americas', text: 'US-Venezuela ink military & oil accord; Princeton neuroscientist held by ICE.', src: 'AP, Hindu', color: '#3730A3' },
-  { id: 18, label: 'South Africa / AI', text: 'Government launches 90-day national AI plan; outcry over Facebook murder video.', src: 'iAfrica, BBC', color: '#B45309' },
-  { id: 19, label: 'Gaza & UN WFP', text: 'Israeli strikes hit Gaza UNRWA post; WFP warns blockades risk food aid for 7.3M.', src: 'AJ, WAM', color: '#B91C1C' },
-  { id: 20, label: 'South Asia / COP31', text: 'Ex-PM Hasina vows Dec 16 Dhaka return despite arrest threat; COP31 talks stall.', src: 'AJ, Reuters', color: '#0F766E' },
-  { id: 21, label: 'Europe / Policy', text: 'EU-UK summit pledges Kyiv backing; UK benefits review & snow/ice alerts issued.', src: 'BBC, EU', color: '#6D28D9' },
-  { id: 22, label: 'US Sport / NFL & MLB', text: 'Packers clear Parsons for Wed debut; Mets sign Skubal; 49ers cut Aiyuk.', src: 'ESPN', color: '#3730A3' },
-  { id: 23, label: 'World Sport / FIFA', text: 'US 2031 & UK 2035 Women’s World Cups set; NZ lose Tickner for 2nd Test.', src: 'ESPN, CNA', color: '#1D4ED8' },
+  { id: 12, label: 'Singapore / GDP', text: 'Q3 GDP rose 1.5% Q/Q; PM Wong addresses US AI-chip diversion probes.', src: 'CNA', color: '#0F766E' },
+  { id: 13, label: 'Bangladesh / Politics', text: 'Ex-PM Sheikh Hasina vows Dec 16 Dhaka return; interim govt vows arrest.', src: 'Al Jazeera', color: '#0F766E' },
+  { id: 14, label: 'Gaza / Conflict', text: 'Israeli airstrikes kill Hamas internal security chief Naeem Abu Nahel.', src: 'Just Security', color: '#B91C1C' },
+  { id: 15, label: 'Europe / Markets', text: 'FTSE 100 slips 0.13% as EU equities lag Asia tech rally; French spreads tighten.', src: 'Guardian', color: '#1D4ED8' },
+  { id: 16, label: 'US / Aviation', text: 'DOT & FAA project busiest Thanksgiving sky in 16 years at 417,000+ flights.', src: 'FAA', color: '#3730A3' },
+  { id: 17, label: 'US / Rates & FX', text: 'Dollar hits 19-month high vs euro and 10-yr yield nears 4.9% on Fed caution.', src: 'Fortune', color: '#3730A3' },
+  { id: 18, label: 'US / Drones', text: 'FAA investigates Amazon delivery drone strike on Michigan fiber line & garage.', src: 'CNBC', color: '#3730A3' },
+  { id: 19, label: 'Nigeria / Education', text: 'Borno school enrolment nearly doubles in northeast recovery despite insecurity.', src: 'Al Jazeera', color: '#B45309' },
+  { id: 20, label: 'Australia / Cyber', text: 'Australian intelligence exposes Iran ChatGPT-assisted disinformation op.', src: 'ABC AU', color: '#0369A1' },
+  { id: 21, label: 'UEFA / Football', text: 'Real Madrid thrash PSV 5-1; Man City draw Napoli 2-2; Arsenal 1-1 Dortmund.', src: 'UEFA, Guardian', color: '#1D4ED8' },
+  { id: 22, label: 'NBA / Basketball', text: 'Tuesday slate features Celtics-Wizards, Pistons-Magic and Mavs-Nuggets.', src: 'CBS Sports', color: '#3730A3' },
+  { id: 23, label: 'SE Asia / Haze', text: 'Regional task forces target Indonesian land-clearing fires amid seasonal haze.', src: 'CNA', color: '#047857' },
 ];
 
+// Carefully spaced coordinates across all 7 global regions (verified >= 22px separation)
 const mapPinList = [
   { id: 1, lon: 57.5, lat: 26.2, color: '#B91C1C' },
-  { id: 2, lon: 34.0, lat: 48.0, color: '#1D4ED8' },
-  { id: 3, lon: 121.5, lat: 25.0, color: '#0F766E' },
-  { id: 4, lon: 103.8, lat: 1.35, color: '#047857' },
-  { id: 5, lon: 116.4, lat: 40.5, color: '#991B1B' },
-  { id: 6, lon: -84.5, lat: 42.7, color: '#3730A3' },
-  { id: 7, lon: 2.5, lat: 50.5, color: '#6D28D9' },
-  { id: 8, lon: 8.5, lat: 8.5, color: '#B45309' },
-  { id: 9, lon: 149.1, lat: -35.3, color: '#0369A1' },
-  { id: 10, lon: -52.7, lat: 5.2, color: '#1E40AF' },
-  { id: 12, lon: 139.7, lat: 35.7, color: '#0F766E' },
-  { id: 13, lon: 42.5, lat: 23.5, color: '#B91C1C' },
-  { id: 14, lon: 169.5, lat: -39.5, color: '#0369A1' },
-  { id: 15, lon: 144.8, lat: 13.4, color: '#0369A1' },
-  { id: 16, lon: -102.0, lat: 37.5, color: '#3730A3' },
-  { id: 17, lon: -68.0, lat: 10.5, color: '#3730A3' },
-  { id: 18, lon: 26.0, lat: -27.5, color: '#B45309' },
-  { id: 20, lon: 90.4, lat: 23.8, color: '#0F766E' },
+  { id: 2, lon: 35.5, lat: 50.0, color: '#1D4ED8' },
+  { id: 3, lon: 136.0, lat: 35.5, color: '#0F766E' },
+  { id: 4, lon: 43.0, lat: 18.0, color: '#991B1B' },
+  { id: 5, lon: -52.7, lat: 5.2, color: '#1E40AF' },
+  { id: 6, lon: 28.0, lat: 36.5, color: '#047857' },
+  { id: 7, lon: 112.0, lat: 41.5, color: '#B91C1C' },
+  { id: 8, lon: 160.0, lat: -9.5, color: '#0369A1' },
+  { id: 9, lon: -13.5, lat: 10.5, color: '#B45309' },
+  { id: 10, lon: -93.0, lat: 41.5, color: '#3730A3' },
+  { id: 11, lon: 108.5, lat: -8.5, color: '#6D28D9' },
+  { id: 12, lon: 102.0, lat: 4.5, color: '#0F766E' },
+  { id: 13, lon: 90.4, lat: 24.0, color: '#0F766E' },
+  { id: 15, lon: -0.1, lat: 51.5, color: '#1D4ED8' },
+  { id: 19, lon: 13.2, lat: 11.8, color: '#B45309' },
+  { id: 20, lon: 147.0, lat: -34.0, color: '#0369A1' },
 ];
 
-const pinsSvg = mapPinList
-  .map((p) => {
-    const [x, y] = project(p.lon, p.lat);
-    return `<g transform="translate(${x.toFixed(1)},${y.toFixed(1)})">
-      <circle r="8.6" fill="${p.color}" stroke="#FFFFFF" stroke-width="1.8"/>
+// Verify non-overlapping pins at runtime
+const projectedPins = mapPinList.map((p) => {
+  const [x, y] = project(p.lon, p.lat);
+  return { ...p, x, y };
+});
+for (let i = 0; i < projectedPins.length; i++) {
+  for (let j = i + 1; j < projectedPins.length; j++) {
+    const dx = projectedPins[i].x - projectedPins[j].x;
+    const dy = projectedPins[i].y - projectedPins[j].y;
+    const dist = Math.hypot(dx, dy);
+    if (dist < 19) {
+      throw new Error(`Pin overlap: #${projectedPins[i].id} and #${projectedPins[j].id} dist=${dist.toFixed(1)}`);
+    }
+  }
+}
+
+const pinsSvg = projectedPins
+  .map((p) => `<g transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})">
+      <circle r="8.8" fill="${p.color}" stroke="#FFFFFF" stroke-width="1.8"/>
       <text y="3.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" font-weight="900" fill="#FFFFFF">${p.id}</text>
-    </g>`;
-  })
+    </g>`)
   .join('\n');
 
 function renderHeroCard(s) {
@@ -407,14 +405,14 @@ const html = `<!doctype html>
   }
   .region-bar {
     display: grid;
-    grid-template-columns: 3fr 4fr 5fr 4fr 2fr 3fr 2fr;
-    height: 15px;
+    grid-template-columns: 3fr 4fr 5fr 4fr 2fr 2fr 3fr;
+    height: 16px;
     border-radius: 2px;
     overflow: hidden;
     margin-bottom: 4px;
   }
   .rb-seg {
-    font-size: 9.5px;
+    font-size: 9.8px;
     font-weight: 900;
     color: #FFFFFF;
     display: flex;
@@ -478,7 +476,7 @@ const html = `<!doctype html>
   }
   .pill {
     color: #FFFFFF;
-    font-size: 9.8px;
+    font-size: 10px;
     font-weight: 900;
     padding: 2px 6px;
     border-radius: 3px;
@@ -491,7 +489,7 @@ const html = `<!doctype html>
   }
   .hero-hed {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 17.6px;
+    font-size: 18px;
     font-weight: 900;
     line-height: 1.1;
     color: #0F172A;
@@ -565,13 +563,13 @@ const html = `<!doctype html>
   }
   .mid-hed {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 14.8px;
+    font-size: 15px;
     font-weight: 900;
     line-height: 1.12;
     color: #0F172A;
   }
   .mid-sum {
-    font-size: 11.6px;
+    font-size: 11.7px;
     font-weight: 600;
     line-height: 1.22;
     color: #1F2937;
@@ -643,7 +641,7 @@ const html = `<!doctype html>
     display: flex;
     align-items: flex-start;
     gap: 5px;
-    font-size: 11.3px;
+    font-size: 11.4px;
     line-height: 1.22;
     border-bottom: 1px dotted #E2E8F0;
     padding-bottom: 3px;
@@ -656,7 +654,7 @@ const html = `<!doctype html>
     min-width: 15px;
   }
   .brief-txt strong { color: #0F172A; }
-  .brief-txt em { color: #475569; font-style: italic; font-size: 10.3px; }
+  .brief-txt em { color: #475569; font-style: italic; font-size: 10.4px; }
 
   .footer {
     background: #0F172A;
@@ -679,22 +677,22 @@ const html = `<!doctype html>
         <span class="red">23 VERIFIED DISPATCHES · 7 REGIONS · STRICTLY TUESDAY 24 NOVEMBER 2026</span>
       </div>
       <div class="title-line">TUESDAY · 24 NOVEMBER 2026</div>
-      <div class="sub-deck">HORMUZ TANKER MINES · ZELENSKY 4-WAY TALKS · TAIEX +9% &amp; MEGASPEED BAN · RIYADH &amp; VA271</div>
+      <div class="sub-deck">HORMUZ TANKER MINES · ZAPORIZHZHIA &amp; UNSC · ASIA CHIP SURGE · RIYADH &amp; COP31 COLLAPSE</div>
       <div class="region-bar">
         <div class="rb-seg" style="background:#9A3412;">MIDEAST 3</div>
         <div class="rb-seg" style="background:#1D4ED8;">EUROPE 4</div>
-        <div class="rb-seg" style="background:#0F766E;">ASIA 5</div>
-        <div class="rb-seg" style="background:#3730A3;">N.AM 4</div>
+        <div class="rb-seg" style="background:#0F766E;">ASIA 6</div>
+        <div class="rb-seg" style="background:#3730A3;">N.AM 5</div>
         <div class="rb-seg" style="background:#B45309;">AFRICA 2</div>
-        <div class="rb-seg" style="background:#0369A1;">OCEANIA 3</div>
-        <div class="rb-seg" style="background:#4338CA;">LATAM/SCI 2</div>
+        <div class="rb-seg" style="background:#0369A1;">OCEANIA 2</div>
+        <div class="rb-seg" style="background:#4338CA;">SPACE 1</div>
       </div>
       <div class="timeline">
-        <span><span class="tl-k">UTC TIMELINE:</span> <span class="tl-t">00:00</span> Hormuz mines &amp; SG 6% GDP</span>
-        <span><span class="tl-t">00:30</span> Zelensky 4-way talks</span>
-        <span><span class="tl-t">01:00</span> Taiex +9% &amp; Megaspeed ban</span>
-        <span><span class="tl-t">06:00</span> Riyadh hit &amp; EU EV quotas</span>
-        <span><span class="tl-t">11:14</span> Ariane 6 VA271 &amp; WFP</span>
+        <span><span class="tl-k">UTC FLOW:</span> <span class="tl-t">00:00</span> Hormuz mines &amp; Riyadh hit</span>
+        <span><span class="tl-t">04:00</span> Kospi +6.3% &amp; Nikkei +3.9%</span>
+        <span><span class="tl-t">11:14</span> Ariane 6 VA271 launch</span>
+        <span><span class="tl-t">16:00</span> COP31 talks collapse</span>
+        <span><span class="tl-t">20:00</span> UCL MD5 &amp; NY tech dip</span>
       </div>
     </header>
 
@@ -714,7 +712,7 @@ const html = `<!doctype html>
       <div class="atlas-panel">
         <div class="panel-head">
           <span>GLOBAL DISPATCH ATLAS · TUESDAY 24 NOV 2026</span>
-          <span class="accent">PINS 1–10 · 12–18 · 20</span>
+          <span class="accent">PINS 1–13 · 15 · 19 · 20</span>
         </div>
         <div class="map-wrap">
           <svg viewBox="0 0 ${MAP_W} ${MAP_H}" width="${MAP_W}" height="${MAP_H}">
@@ -731,7 +729,7 @@ const html = `<!doctype html>
           <span><i class="dot" style="background:#3730A3;"></i>N.Am</span>
           <span><i class="dot" style="background:#B45309;"></i>Africa</span>
           <span><i class="dot" style="background:#0369A1;"></i>Oceania</span>
-          <span><i class="dot" style="background:#1E40AF;"></i>LatAm/Space</span>
+          <span><i class="dot" style="background:#1E40AF;"></i>Space/Climate</span>
         </div>
       </div>
 
@@ -748,7 +746,7 @@ const html = `<!doctype html>
     </section>
 
     <footer class="footer">
-      <span>24 NOV EDITION · Strictly Tuesday 24 November 2026 events · Al Jazeera, Reuters, BBC, CNBC, CNA, WaPo, Guardian, RNZ, ABC, ESPN</span>
+      <span>24 NOV EDITION · Strictly Tuesday 24 November 2026 events · Reuters, AP, Al Jazeera, Guardian, BBC, CNA, IMF, UEFA</span>
       <span>23 DISPATCHES · 7 REGIONS · NATURAL EARTH</span>
     </footer>
   </div>
@@ -756,4 +754,4 @@ const html = `<!doctype html>
 </html>`;
 
 writeFileSync(new URL('../broadsheet.html', import.meta.url), html, 'utf8');
-console.log('Wrote V5 broadsheet.html (23 dispatches, 7 regions, Natural Earth vector)');
+console.log('Wrote V6 broadsheet.html (23 dispatches, 7 regions, Natural Earth vector)');
